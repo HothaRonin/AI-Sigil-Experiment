@@ -28,4 +28,5 @@ This experiment was conceptualized and designed by **James Lester**, in collabor
 Pull requests are welcome. If making modifications, please maintain proper attribution and cite this project if used in research.
 
 ## Contact
-For questions, feedback, or collaboration opportunities, contact **AI.Sigil.Project@gmail.com or http://github.com/HothaRonin**.
+For questions, feedback, or collaboration opportunities, contact **[AI.Sigil.Project@gmail.com](mailto:AI.Sigil.Project@gmail.com)** or visit **[my GitHub profile](http://github.com/HothaRonin).**
+
