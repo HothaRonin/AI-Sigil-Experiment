@@ -78,6 +78,7 @@
         
         function submitResponses() {
     const scriptURL = "https://script.google.com/macros/s/AKfycbzpujv6kNcQedUWO580e-0wbE3UAMXC5RUwQ0iYj3PGyljvdm9cb_8jl_NaoM7Xs8gr/exec";
+
     const data = {
         first: document.getElementById("response1").value,
         second: document.getElementById("response2").value,
@@ -90,11 +91,12 @@
     fetch(scriptURL, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         },
         body: JSON.stringify(data),
     })
-    .then(response => response.json())
+    .then(response => response.json()) // Expect JSON response
     .then(result => {
         console.log("Success:", result);
         document.getElementById("submission-status").textContent = result.message || "Submission successful!";
@@ -106,19 +108,6 @@
         alert("Submission failed. Please check your connection.");
     });
 }
-
-            .then(response => response.text())
-            .then(result => {
-                console.log("Success:", result);
-                document.getElementById("submission-status").textContent = "Thank you for participating! Your responses have been recorded.";
-                alert("Submission successful!");
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("submission-status").textContent = "There was an issue submitting your responses. Please try again later.";
-                alert("Submission failed. Please check your connection and try again.");
-            });
-        }
         
         window.onload = function() {
             document.getElementById('question1').style.display = 'block';
