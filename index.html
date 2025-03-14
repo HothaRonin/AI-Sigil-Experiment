@@ -76,19 +76,33 @@
         }
         
         function submitResponses() {
-            const data = {
-                first: document.getElementById("response1").value,
-                second: document.getElementById("response2").value,
-                third: document.getElementById("response3").value,
-                final: document.getElementById("final-response").value,
-            };
-            console.log("User Responses:", data);
-            alert("Thank you for participating! Your responses have been recorded.");
-        }
-        
-        window.onload = function() {
-            document.getElementById('question1').style.display = 'block';
-        }
+   function submitResponses() {
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyIynu8ZnQKfXgSZRBd-e3282wCopaB8TrKIsQcc0JLCrXnUI9Ywvi925nG36SLn0Lh/exec";
+
+    const data = {
+        first: document.getElementById("response1").value,
+        second: document.getElementById("response2").value,
+        third: document.getElementById("response3").value,
+        final: document.getElementById("final-response").value,
+    };
+
+    fetch(scriptURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log("Success:", result);
+        alert("Thank you for participating! Your responses have been recorded.");
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("There was an issue submitting your responses.");
+    });
+}
     </script>
 </body>
 </html>
