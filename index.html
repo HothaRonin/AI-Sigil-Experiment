@@ -61,6 +61,7 @@
         <p>Summarize your overall experience. Did your perception evolve over time?</p>
         <textarea id="final-response"></textarea>
         <button onclick="submitResponses()">Submit</button>
+        <p id="submission-status"></p>
     </div>
     
     <script>
@@ -76,7 +77,7 @@
         }
         
         function submitResponses() {
-            const scriptURL = "https://script.google.com/macros/s/AKfycbzpujv6kNcQedUWO580e-0wbE3UAMXC5RUwQ0iYj3PGyljvdm9cb_8jl_NaoM7Xs8gr/exec";
+            const scriptURL = "https://script.google.com/macros/s/AKfycbwoeR4s67MH3YvThOBP5JiJTpnGhIpHVh-lRFGMAJAYrELUdy8TPSxk7f6amLKZrCyE/exec";
             
             const data = {
                 first: document.getElementById("response1").value,
@@ -84,6 +85,8 @@
                 third: document.getElementById("response3").value,
                 final: document.getElementById("final-response").value,
             };
+            
+            document.getElementById("submission-status").textContent = "Submitting responses...";
             
             fetch(scriptURL, {
                 method: "POST",
@@ -95,11 +98,13 @@
             .then(response => response.text())
             .then(result => {
                 console.log("Success:", result);
-                alert("Thank you for participating! Your responses have been recorded.");
+                document.getElementById("submission-status").textContent = "Thank you for participating! Your responses have been recorded.";
+                alert("Submission successful!");
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("There was an issue submitting your responses.");
+                document.getElementById("submission-status").textContent = "There was an issue submitting your responses. Please try again later.";
+                alert("Submission failed. Please check your connection and try again.");
             });
         }
         
