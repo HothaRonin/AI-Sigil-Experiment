@@ -22,10 +22,10 @@ This project is licensed under the **MIT License**.
 See [LICENSE](LICENSE) for details.
 
 ## Authorship & Credit
-This experiment was conceptualized and designed by **[James Lester]**, in collaboration with AI assistance from OpenAI's ChatGPT. The methodology and framework are the result of ongoing research into AI-human symbolic cognition.
+This experiment was conceptualized and designed by **James Lester**, in collaboration with AI assistance from OpenAI's ChatGPT. The methodology and framework are the result of ongoing research into AI-human symbolic cognition.
 
 ## Contributions
 Pull requests are welcome. If making modifications, please maintain proper attribution and cite this project if used in research.
 
 ## Contact
-For questions, feedback, or collaboration opportunities, contact **[Your Email or GitHub Profile]**.
+For questions, feedback, or collaboration opportunities, contact **AI.Sigil.Project@gmail.com or [GitHub Profile]](http://github.com/HothaRonin)**.
