@@ -110,8 +110,12 @@
 }
         
         window.onload = function() {
-            document.getElementById('question1').style.display = 'block';
-        }
+    // Ensure all sections except the first one are hidden
+    document.querySelectorAll('.question-section').forEach(section => section.style.display = 'none');
+    
+    // Display the first question
+    document.getElementById('question1').style.display = 'block';
+}
     </script>
 </body>
 </html>
