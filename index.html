@@ -72,7 +72,7 @@
             apiKey: "AIzaSyCwwF18mvfQwDmrxspaVvhJkhfzczU7uSM",
             authDomain: "ai-sigil-experiment.firebaseapp.com",
             projectId: "ai-sigil-experiment",
-            storageBucket: "ai-sigil-experiment.firebasestorage.app",
+            storageBucket: "ai-sigil-experiment.appspot.com",
             messagingSenderId: "410459057966",
             appId: "1:410459057966:web:87a16a5d8fc26d7d2354bf"
         };
@@ -80,16 +80,16 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        function nextQuestion(step) {
+        window.nextQuestion = function(step) {
             document.getElementById(`question${step}`).style.display = 'none';
             if (step < 3) {
                 document.getElementById(`question${step + 1}`).style.display = 'block';
             } else {
                 document.getElementById('final-question').style.display = 'block';
             }
-        }
+        };
 
-        async function submitResponses() {
+        window.submitResponses = async function() {
             const responses = {
                 first: document.getElementById("response1").value,
                 second: document.getElementById("response2").value,
@@ -109,7 +109,7 @@
                 document.getElementById("submission-status").textContent = "Submission failed. Please try again.";
                 alert("Submission failed. Please check your connection.");
             }
-        }
+        };
 
         window.onload = function() {
             document.getElementById('question1').style.display = 'block';
@@ -117,5 +117,3 @@
     </script>
 </body>
 </html>
-
-
