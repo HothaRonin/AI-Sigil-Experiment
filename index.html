@@ -1,21 +1,41 @@
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
+   <script type="module">
+  // Import Firebase functions
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyCwwF18mvfQwDmrxspaVvhJkhfzczU7uSM",
-        authDomain: "ai-sigil-experiment.firebaseapp.com",
-        projectId: "ai-sigil-experiment",
-        storageBucket: "ai-sigil-experiment.firebasestorage.app",
-        messagingSenderId: "410459057966",
-        appId: "1:410459057966:web:87a16a5d8fc26d7d2354bf"
-      };
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCwwF18mvfQwDmrxspaVvhJkhfzczU7uSM",
+    authDomain: "ai-sigil-experiment.firebaseapp.com",
+    projectId: "ai-sigil-experiment",
+    storageBucket: "ai-sigil-experiment.appspot.com",
+    messagingSenderId: "410459057966",
+    appId: "1:410459057966:web:87a16a5d8fc26d7d2354bf"
+  };
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    </script>
-</body>
-</html>
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function submitResponses() {
+    const data = {
+      first: document.getElementById("response1").value,
+      second: document.getElementById("response2").value,
+      third: document.getElementById("response3").value,
+      final: document.getElementById("final-response").value,
+      timestamp: new Date()
+    };
+
+    document.getElementById("submission-status").textContent = "Submitting responses...";
+
+    try {
+      await addDoc(collection(db, "responses"), data);
+      document.getElementById("submission-status").textContent = "Submission successful!";
+      alert("Submission successful!");
+    } catch (error) {
+      console.error("Error:", error);
+      document.getElementById("submission-status").textContent = "Submission failed. Please try again.";
+      alert("Submission failed. Please check your connection.");
+    }
+  }
+</script>
