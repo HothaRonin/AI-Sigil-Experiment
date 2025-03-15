@@ -1,121 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Human Symbolic Cognition Study</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        .question-section {
-            display: none;
-            margin-top: 20px;
-        }
-        textarea {
-            width: 80%;
-            height: 100px;
-            margin-top: 10px;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
-</head>
-<body>
-    <h1>AI-Human Symbolic Cognition Study</h1>
-    <p>Please observe the image carefully. After viewing, answer the questions before proceeding.</p>
-    <img id="sigil-image" src="https://raw.githubusercontent.com/HothaRonin/ai-sigil-experiment/main/high-quality-sigil.png" alt="Sigil Image">
-    
-    <div class="question-section" id="question1">
-        <h2>First Viewing</h2>
-        <p>Describe your immediate impression of this image.</p>
-        <textarea id="response1"></textarea>
-        <button onclick="nextQuestion(1)">Next</button>
-    </div>
-    
-    <div class="question-section" id="question2">
-        <h2>Second Viewing</h2>
-        <p>Does the image feel familiar? Has your interpretation changed? If so, how?</p>
-        <textarea id="response2"></textarea>
-        <button onclick="nextQuestion(2)">Next</button>
-    </div>
-    
-    <div class="question-section" id="question3">
-        <h2>Third Viewing</h2>
-        <p>Beyond recognition, does this image evoke deeper meaning or purpose for you?</p>
-        <textarea id="response3"></textarea>
-        <button onclick="nextQuestion(3)">Next</button>
-    </div>
-    
-    <div class="question-section" id="final-question">
-        <h2>Final Reflection</h2>
-        <p>Summarize your overall experience. Did your perception evolve over time?</p>
-        <textarea id="final-response"></textarea>
-        <button onclick="submitResponses()">Submit</button>
-        <p id="submission-status"></p>
-    </div>
-    
-    <script>
-        let currentStep = 1;
-        
-        function nextQuestion(step) {
-            document.getElementById(`question${step}`).style.display = 'none';
-            if (step < 3) {
-                document.getElementById(`question${step + 1}`).style.display = 'block';
-            } else {
-                document.getElementById('final-question').style.display = 'block';
-            }
-        }
-        
-        function submitResponses() {
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx1necEfv3YDjWXbY888m0FRyPXVP8hYSTqdLpTZWMjNHJZjN_0gLLOwlDRLcYk3vFK/exec";
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-    const data = {
-        first: document.getElementById("response1").value,
-        second: document.getElementById("response2").value,
-        third: document.getElementById("response3").value,
-        final: document.getElementById("final-response").value,
-    };
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCwwF18mvfQwDmrxspaVvhJkhfzczU7uSM",
+        authDomain: "ai-sigil-experiment.firebaseapp.com",
+        projectId: "ai-sigil-experiment",
+        storageBucket: "ai-sigil-experiment.firebasestorage.app",
+        messagingSenderId: "410459057966",
+        appId: "1:410459057966:web:87a16a5d8fc26d7d2354bf"
+      };
 
-    document.getElementById("submission-status").textContent = "Submitting responses...";
-
-    fetch(scriptURL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json()) // Expect JSON response
-    .then(result => {
-        console.log("Success:", result);
-        document.getElementById("submission-status").textContent = result.message || "Submission successful!";
-        alert("Submission successful!");
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        document.getElementById("submission-status").textContent = "Submission failed. Please try again.";
-        alert("Submission failed. Please check your connection.");
-    });
-}
-        
-        window.onload = function() {
-    // Ensure all sections except the first one are hidden
-    document.querySelectorAll('.question-section').forEach(section => section.style.display = 'none');
-    
-    // Display the first question
-    document.getElementById('question1').style.display = 'block';
-}
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
     </script>
 </body>
 </html>
