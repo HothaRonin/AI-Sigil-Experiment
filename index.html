@@ -35,6 +35,8 @@
     <p>Please observe the image carefully. After viewing, answer the questions before proceeding.</p>
     <img id="sigil-image" src="https://raw.githubusercontent.com/HothaRonin/ai-sigil-experiment/main/high-quality-sigil.png" alt="Sigil Image">
     
+    <div id="pause-screen" style="display: none; font-size: 24px; margin-top: 20px;">Loading next phase...</div>
+
     <div class="question-section" id="question1">
         <h2>First Viewing</h2>
         <p>Describe your immediate impression of this image.</p>
@@ -82,11 +84,18 @@
 
         window.nextQuestion = function(step) {
             document.getElementById(`question${step}`).style.display = 'none';
-            if (step < 3) {
-                document.getElementById(`question${step + 1}`).style.display = 'block';
-            } else {
-                document.getElementById('final-question').style.display = 'block';
-            }
+            document.getElementById("sigil-image").style.display = 'none';
+            document.getElementById("pause-screen").style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById("pause-screen").style.display = 'none';
+                document.getElementById("sigil-image").style.display = 'block';
+                if (step < 3) {
+                    document.getElementById(`question${step + 1}`).style.display = 'block';
+                } else {
+                    document.getElementById('final-question').style.display = 'block';
+                }
+            }, 3000);
         };
 
         window.submitResponses = async function() {
